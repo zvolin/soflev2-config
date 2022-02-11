@@ -30,7 +30,7 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------
 &kp LCTRL  &kp SEMI &kp Q     &kp J    &kp K     &kp X   &kp C_MUTE       &none   &kp B    &kp M     &kp W     &kp V    &kp Z    &kp RCTL
 // ---------------------------------------------------------------------------------------------------------------------------------------
-                    &kp LALT  &kp HIGH &kp LGUI  &mo LOW &kp SPACE        &kp RET &mo LOW  &kp RALT  &kp HIGH  &kp RGUI
+                    &kp LALT  &mo HIGH &kp LGUI  &mo LOW &kp SPACE        &kp RET &mo LOW  &kp RALT  &mo HIGH  &kp RGUI
 //                  ---------------------------------------------------------------------------------------------------
             >;
 
@@ -38,7 +38,6 @@
         };
 
         lower_layer {
-// TODO: Some binds are waiting for shifted keycode support.
             bindings = <
 // ---------------------------------------------------------------------------------------------------------------------------------------
 &trans    &trans    &trans    &trans      &trans    &trans                         &trans    &trans   &trans    &trans    &trans    &trans
