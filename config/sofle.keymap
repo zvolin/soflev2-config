@@ -11,17 +11,23 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-#define LOW 1
-#define HIGH 2
+#define DVORAK 0
+#define QWERTY 1
+#define LOW 2
+#define HIGH 3
 
 #define CPY C_AC_COPY
 #define PST C_AC_PASTE
+
+#define POW_TOG ext_power EP_TOG
+#define POW_ON ext_power EP_ON
+#define POW_OFF ext_power EP_OFF
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        dvorak_layer {
             bindings = <
 // ---------------------------------------------------------------------------------------------------------------------------------------
 &kp ESC    &kp N1   &kp N2    &kp N3   &kp N4    &kp N5                           &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &kp DEL
@@ -32,8 +38,26 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------
 &kp LCTRL  &kp SEMI &kp Q     &kp J    &kp K     &kp X   &kp C_MUTE       &none   &kp B    &kp M     &kp W     &kp V    &kp Z    &kp RCTL
 // ---------------------------------------------------------------------------------------------------------------------------------------
-                    &kp LALT  &mo HIGH &kp LGUI  &mo LOW &kp SPACE        &kp RET &mo LOW  &kp RALT  &mo HIGH  &kp RGUI
-//                  ---------------------------------------------------------------------------------------------------
+                    &kp LALT  &mo HIGH &kp LGUI  &mo LOW &kp SPACE        &kp RET &mo LOW  &kp RALT  &mo HIGH  &tog QWERTY
+//                  ------------------------------------------------------------------------------------------------------
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        qwerty_layer {
+            bindings = <
+// ---------------------------------------------------------------------------------------------------------------------------------------
+&trans    &trans   &trans    &trans   &trans    &trans                           &trans   &trans    &trans    &trans   &trans   &trans
+// ---------------------------------------------------------------------------------------------------------------------------------------
+&trans    &kp Q    &kp W     &kp E    &kp R     &kp T                            &kp Y    &kp U     &kp I     &kp O    &kp P    &trans
+// ---------------------------------------------------------------------------------------------------------------------------------------
+&trans    &kp A    &kp S     &kp D    &kp F     &kp G                            &kp H    &kp J     &kp K     &kp L    &kp SEMI &trans
+// ---------------------------------------------------------------------------------------------------------------------------------------
+&trans    &kp Z    &kp X     &kp C    &kp V     &kp B   &trans           &trans  &kp N    &kp M     &kp COMMA &kp DOT  &kp SQT  &trans
+// ---------------------------------------------------------------------------------------------------------------------------------------
+                   &trans    &trans   &trans    &trans  &trans           &trans  &trans   &trans    &trans    &trans
+//                 ---------------------------------------------------------------------------------------------------
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -60,7 +84,7 @@
         raise_layer {
             bindings = <
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-&ext_power EP_TOG  &trans   &trans           &trans           &out OUT_USB     &out OUT_BLE                   &out OUT_BLE &out OUT_USB &trans       &trans       &trans       &ext_power EP_TOG
+&POW_TOG   &POW_ON          &POW_OFF         &trans           &out OUT_USB     &out OUT_BLE                   &out OUT_BLE &out OUT_USB &trans       &trans       &trans       &ext_power EP_TOG
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 &trans     &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &trans                         &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
